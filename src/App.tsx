@@ -88,7 +88,7 @@ function App() {
       }));
 
       for (const row of bosExcelData) {
-        const lookuped = erpExcelData.find((data, i) => {
+        const lookuped = erpExcelData.find((data) => {
           return getCellResult(data['주문상세번호']) === `${row['품목별주문번호']}`;
         });
 
