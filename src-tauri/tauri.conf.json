@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "gimhaemall-users",
-  "version": "0.1.0",
-  "identifier": "com.gimhaemall-users.app",
+  "productName": "gimhaemall-util",
+  "version": "0.1.1",
+  "identifier": "com.gimhaemall-util.app",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "gimhaemall-users",
+        "title": "gimhaemall-util",
         "width": 800,
         "height": 600
       }
