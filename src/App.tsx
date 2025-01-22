@@ -53,7 +53,11 @@ async function getWorksheetFromFile(file: File) {
 }
 
 function getCellResult(value: any) {
-  return (typeof value === 'string' ? value : value.result) || '';
+  try {
+    return (typeof value === 'string' ? value : value.result) || '';
+  } catch (error) {
+    throw new Error(`${(error as Error).message}: ${JSON.stringify(value)}`);
+  }
 }
 
 function App() {
@@ -86,6 +90,8 @@ function App() {
         header: key,
         key,
       }));
+
+      worksheet.addRow(bosExcelData[0]);
 
       for (const row of bosExcelData) {
         const lookuped = erpExcelData.find((data) => {
