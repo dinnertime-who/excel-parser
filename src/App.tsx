@@ -54,7 +54,10 @@ async function getWorksheetFromFile(file: File) {
 
 function getCellResult(value: any) {
   try {
-    return (typeof value === 'string' ? value : value.result) || '';
+    if (typeof value === 'object' && 'result' in value) {
+      return `${value.result}`;
+    }
+    return `${value}`;
   } catch (error) {
     throw new Error(`${(error as Error).message}: ${JSON.stringify(value)}`);
   }
@@ -95,7 +98,7 @@ function App() {
 
       for (const row of bosExcelData) {
         const lookuped = erpExcelData.find((data) => {
-          return getCellResult(`${data['주문상세번호']}`) === `${row['품목별주문번호']}`;
+          return getCellResult(data['주문상세번호']) === getCellResult(row['품목별주문번호']);
         });
 
         if (!lookuped) {
